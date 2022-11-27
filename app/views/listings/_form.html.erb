@@ -1,0 +1,56 @@
+<div class="form-group">
+  <%= f.label :agent_name %>
+  <%= f.text_field :agent_name, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :agent_email %>
+  <%= f.email_field :agent_email, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :description %>
+  <%= f.text_area :description, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :price %>
+  <%= f.number_field :price, class: 'form-control', step: 0.01, min: 1 %>
+</div>
+
+<div class="form-group">
+  <%= f.label :beds %>
+  <%= f.number_field :beds, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :baths %>
+  <%= f.number_field :baths, class: 'form-control' %>
+</div>
+
+<div class="listing-images-section">
+  <div class="listing-images-section-header">
+    <h3 class="d-inline-block">Images</h3>
+    <%= link_to 'Add Image', new_listing_image_path(listing_id: f.object.id), remote: true, class: 'd-inline-block mx-2' %>
+  </div>
+
+  <table class="table listing-images-table">
+    <thead>
+    <tr>
+      <th>Image</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <%= f.fields_for :images do |ff| %>
+      <%= render partial: 'images/image', locals: { image: ff.object, ff: ff } %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="actions-container border-top-0">
+  <%= f.submit  'Save Listing', class: 'btn btn-primary', data: { disable_with: 'Please wait...' } %>
+</div>

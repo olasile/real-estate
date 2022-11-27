@@ -1,0 +1,10 @@
+<%= form_for Contact.new, url: listing_contacts_path(listing_id: @listing.id), remote: true do |f| %>
+  <div class="form-group">
+    <%= f.label :message %>
+    <%= f.text_area :message, class: 'form-control' %>
+  </div>
+
+  <div class="actions-container">
+    <%= f.submit  'Send Message', class: 'btn btn-primary', data: { disable_with: 'Please wait...' } %>
+  </div>
+<% end %>

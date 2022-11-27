@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Real Estate App</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="<%= 'unauthenticated' unless user_signed_in? %>">
+    <% if user_signed_in? %>
+      <%= render 'header' %>
+    <% end %>
+
+    <section id="content-wrapper">
+      <div id="flash-messages">
+        <%= flash_messages %>
+      </div>
+
+      <div class="container main-container">
+        <%= yield %>
+      </div>
+    </section>
+  </div>
+  </body>
+</html>

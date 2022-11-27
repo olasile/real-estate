@@ -1,0 +1,15 @@
+<tr id="listing-image-<%= ff.object.id %>">
+  <td>
+    <% unless ff.object.new_record? %>
+      <%= ff.hidden_field :id %>
+      <%= image_tag ff.object.file.medium.url, class: 'd-block mb-2' %>
+    <% end %>
+
+    <%= ff.label :file, 'Select Image' %>
+    <%= ff.file_field :file, class: 'my-2 d-block' %>
+
+  </td>
+  <td>
+    <%= link_to 'Remove', listing_image_path(id: ff.object.id, listing_id: ff.object.listing_id), remote: true, method: :delete %>
+  </td>
+</tr>

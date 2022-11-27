@@ -1,0 +1,6 @@
+<% if flash.now[:success] %>
+  toastr.success('<%= flash.now[:success] %>');
+  document.querySelector('.new_contact').reset();
+<% else %>
+  toastr.error('<%= raw j flash.now[:error] %>');
+<% end %>

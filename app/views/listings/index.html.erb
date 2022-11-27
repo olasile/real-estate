@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h1>Listings</h1>
+
+  <%= link_to new_listing_path, class: 'float-right btn btn-primary' do %>
+    <i class="fa fa-plus"></i> New Listing
+  <% end %>
+</div>
+
+<div class="mb-3">
+  <%= form_tag(listings_path, method: :get) do %>
+    <%= text_field_tag 'query[beds_min]', params[:query][:beds_min], placeholder:'Min Beds', class: 'form-control d-inline-block w-auto' %>
+    <%= text_field_tag 'query[beds_max]', params[:query][:beds_max], placeholder: 'Max Beds', class: 'form-control d-inline-block w-auto' %>
+    <%= text_field_tag 'query[baths_min]', params[:query][:baths_min], placeholder: "Min Baths", class: 'form-control d-inline-block w-auto' %>
+    <%= text_field_tag 'query[baths_max]',  params[:query][:baths_max], placeholder: 'Max Baths', class: 'form-control d-inline-block w-auto' %>
+    <%= submit_tag 'Search', class: 'btn btn-primary' %>
+  <% end %>
+
+</div>
+
+<%= render 'search' %>

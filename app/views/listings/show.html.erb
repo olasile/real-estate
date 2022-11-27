@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="listing-header">
+      <h3 class="listing-header-price mb-4"><%= number_to_currency(@listing.price, precision: 2) %></h3>
+      <div class="row">
+        <div class="col-md-2">
+          <i class="fa fa-bed mr-2"></i> <%= @listing.beds %> Beds
+        </div>
+
+        <div class="col-md-2">
+          <i class="fa fa-bath mr-2"></i> <%= @listing.baths %> Baths
+        </div>
+      </div>
+    </div>
+
+    <div class="listing-images mt-4">
+      <div class="listing-images-main-image">
+        <%= image_tag @listing.images[0].file.url %>
+      </div>
+
+      <div class="popup-gallery mt-2">
+        <% @listing.images.each do |image| %>
+          <%= link_to image.file.url, class: 'd-inline-block' do %>
+            <div class="img-fluid">
+              <%= image_tag image.file.url, width: 120 %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="listing-content mt-4">
+      <div class="mb-4">
+        <%= @listing.description %>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table mb-0">
+          <tbody>
+            <tr>
+              <th scope="row" class="pl-0" >Price:</th>
+              <td><%= number_to_currency(@listing.price, precision: 2) %></td>
+            </tr>
+
+            <tr>
+              <th scope="row" class="pl-0" >Bedrooms:</th>
+              <td><%= @listing.beds %> Beds</td>
+            </tr>
+
+            <tr>
+              <th scope="row" class="pl-0" >Bathrooms:</th>
+              <td><%= @listing.beds %> Baths</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="listing-contact">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="mb-3">Property Listed By <%= @listing.agent_name %></h4>
+
+          <%= render 'contacts/form' %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function () {
+	  $('.popup-gallery').magnificPopup({
+		  delegate: 'a',
+		  type: 'image',
+		  tLoading: 'Loading image #%curr%...',
+		  mainClass: 'mfp-img-mobile',
+		  gallery: {
+			  enabled: true,
+			  navigateByImgClick: true,
+			  preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		  },
+		  image: {
+			  tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+		  }
+	  });
+  })
+</script>

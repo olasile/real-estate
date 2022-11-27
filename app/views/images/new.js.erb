@@ -1,0 +1,1 @@
+$('.listing-images-table tbody').append('<%= j render partial: 'images/image', locals: { ff: form_builder(@image, 'listing[images_attributes][]', { index: Time.now.to_i }) } %>');

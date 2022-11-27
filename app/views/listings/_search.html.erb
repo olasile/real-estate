@@ -1,0 +1,32 @@
+<div class="row">
+  <% @listings.records.records.each do |listing| %>
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-2">
+      <div class="card p-0">
+        <%= image_tag listing.images.first.file.medium.url, class: 'card-img-top img-fluid' %>
+        <div class="card-body">
+          <h4 class="card-title mt-0"><%= number_to_currency(listing.price, precision: 2) %></h4>
+          <div class="mt-3 mb-3">
+            <div class="row">
+              <div class="col-md-2">
+                <i class="fa fa-bed mr-2"></i> <%= listing.beds %> Beds
+              </div>
+
+              <div class="col-md-2">
+                <i class="fa fa-bath mr-2"></i> <%= listing.baths %> Baths
+              </div>
+            </div>
+          </div>
+
+          <p class="card-text"></p>
+
+          <%= link_to 'View', listing_path(listing.id), class: 'btn btn-primary waves-effect waves-light' %>
+          <%= link_to 'Edit', edit_listing_path(listing.id), class: 'btn btn-primary waves-effect waves-light' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="pagination mt-3">
+  <%= paginate @listings, theme: 'twitter-bootstrap-4' %>
+</div>
